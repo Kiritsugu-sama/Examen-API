@@ -1,26 +1,26 @@
 ﻿namespace Examen_AlvaroReyes.Controllers.TaskController.Models
 {
-    using System.ComponentModel.DataAnnotations;
+    using System.Text.Json.Serialization;
 
     public class TaskResponseDto
     {
-        [Display(Name = "ID")]
+        [JsonPropertyName("ID")]
         public int? TaskID { get; set; }
 
-        [Display(Name = "Name")]
+        [JsonPropertyName("Name")]
         public string TaskName { get; set; }
 
-        [Display(Name = "Description")]
+        [JsonPropertyName("Description")]
         public string TaskDescription { get; set; }
 
-        [Display(Name = "Active")]
+        [JsonPropertyName("Active")]
         public bool TaskActive { get; set; }
 
-        [Display(Name = "Created At")]
+        [JsonPropertyName("Created At")]
         public DateTime TaskCreatedAt { get; set; }
 
-        [Display(Name = "Updated At")]
-        public DateTime TaskUpdatedAt { get; set; }
+        [JsonPropertyName("Updated At")]
+        public DateTime? TaskUpdatedAt { get; set; }
     }
     public class TaskRegisterDto
     {

@@ -20,6 +20,7 @@ builder.Services.AddScoped<TaskService>();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Examen API", Version = "v1" });
+    c.EnableAnnotations();
 });
 
 var app = builder.Build();

@@ -59,6 +59,10 @@ public class UserController : ControllerBase
             };
 
             var updatedUser = await _userService.UpdateUser(id, user);
+            if (updatedUser == null)
+            {
+                return NotFound("User not found");
+            }
             return Ok(MapToResponseDto(updatedUser));
         }
         catch (Exception ex)
@@ -72,8 +76,13 @@ public class UserController : ControllerBase
     {
         try
         {
-            await _userService.DeleteUser(id);
-            return NoContent();
+
+            var verificacion = await _userService.DeleteUser(id);
+            if (verificacion == "")
+            {
+                return NotFound("Usario no encontrada");
+            }
+            return Ok(verificacion);
         }
         catch (Exception ex)
         {

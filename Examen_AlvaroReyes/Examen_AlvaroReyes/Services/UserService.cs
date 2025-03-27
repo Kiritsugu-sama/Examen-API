@@ -49,7 +49,7 @@ public class UserService
         var existingUser = await GetUserById(id);
 
         if (existingUser == null)
-            throw new Exception("Usuario no encontrado");
+            return null;
 
         existingUser.UserName = user.UserName;
         existingUser.UserEmail = user.UserEmail;
@@ -61,15 +61,16 @@ public class UserService
         return existingUser;
     }
 
-    public async Task DeleteUser(int id)
+    public async Task<string> DeleteUser(int id)
     {
         var user = await GetUserById(id);
         if (user == null)
-            throw new Exception("Usuario no encontrado");
+            return "";
         user.UserDelete = true;
         user.UserUpdatedAt = DateTime.Now;
         await _context.SaveChangesAsync();
-
+        return "Sucess";
     }
+
 }
 

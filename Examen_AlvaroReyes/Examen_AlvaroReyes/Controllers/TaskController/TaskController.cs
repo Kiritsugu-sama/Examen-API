@@ -21,7 +21,16 @@ namespace Examen_AlvaroReyes.Controllers.TaskController
         public async Task<IActionResult> GetAllTasks()
         {
             var tasks = await _taskService.GetAllTasks();
-            return Ok(tasks);
+            var taskParsed = tasks.Select(x => new TaskResponseDto
+            {
+                TaskID = x.TaskId,
+                TaskName = x.TaskName,
+                TaskDescription = x.TaskDescription,
+                TaskActive = x.TaskActive,
+                TaskCreatedAt = x.TaskCreatedAt,
+                TaskUpdatedAt = x.TaskUpdatedAt
+            } ).ToList();
+            return Ok(taskParsed);
         }
 
         [HttpPost]
